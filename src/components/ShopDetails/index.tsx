@@ -75,15 +75,34 @@ const ShopDetails = () => {
 
   const colors = ["red", "blue", "orange", "pink", "purple"];
 
-  const alreadyExist = localStorage.getItem("productDetails");
   const productFromStorage = useAppSelector(
     (state) => state.productDetailsReducer.value
   );
 
-  const product = alreadyExist ? JSON.parse(alreadyExist) : productFromStorage;
+  // Use empty string as fallback for server-side rendering
+  const [product, setProduct] = useState(productFromStorage);
 
+  // Handle localStorage only on the client side
   useEffect(() => {
-    localStorage.setItem("productDetails", JSON.stringify(product));
+    // Check if running in browser environment
+    if (typeof window !== "undefined") {
+      const alreadyExist = localStorage.getItem("productDetails");
+      if (alreadyExist) {
+        setProduct(JSON.parse(alreadyExist));
+      } else {
+        localStorage.setItem(
+          "productDetails",
+          JSON.stringify(productFromStorage)
+        );
+      }
+    }
+  }, [productFromStorage]);
+
+  // Update localStorage when product changes
+  useEffect(() => {
+    if (typeof window !== "undefined" && product) {
+      localStorage.setItem("productDetails", JSON.stringify(product));
+    }
   }, [product]);
 
   // pass the product here when you get the real data.
