@@ -87,7 +87,7 @@ const Header = () => {
       <header
         className={`fixed left-0 top-0 w-full z-9999 bg-white transition-all ease-in-out duration-300 ${
           stickyMenu && "shadow"
-        }`}
+        } border-b border-black`}
       >
         <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
           {/* Header top start - SEO optimized */}
@@ -105,14 +105,16 @@ const Header = () => {
                 title="Pearlux - Premium Embroidery & Craft Supplies"
                 aria-label="Pearlux Homepage"
               >
-                <Image
-                  src="/images/Pearlux.svg"
-                  alt="Pearlux Logo - Premium Embroidery and Craft Supplies Store"
-                  width={150}
-                  height={32}
-                  className="w-[120px] md:w-[150px] h-auto"
-                  priority
-                />
+                <div className="animated-logo-background">
+                  <Image
+                    src="/images/Pearlux.svg"
+                    alt="Pearlux Logo - Premium Embroidery and Craft Supplies Store"
+                    width={150}
+                    height={32}
+                    className="w-[110px] md:w-[140px] h-auto"
+                    priority
+                  />
+                </div>
               </Link>
 
               {/* Search form - SEO optimized with client-side functionality */}

@@ -1,0 +1,108 @@
+@keyframes cloudyAnimation {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+}
+
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+.animated-logo-background {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  animation: subtleFloat 4s ease-in-out infinite;
+  overflow: visible;
+  transition: all 0.5s ease;
+  padding: 6px 10px;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    filter: blur(6px);
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    filter: blur(7px);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+}
+
+.animated-logo-background::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: blur(6px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.95;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animated-logo-background::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.35) 30%,
+    rgba(0, 0, 0, 0.15) 60%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.animated-logo-background:hover {
+  filter: brightness(1.1);
+}
+
+.animated-logo-background:hover::before {
+  opacity: 0.9;
+}
+
+/* Ensure the logo stands out against the background */
+.animated-logo-background img {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.3));
+}

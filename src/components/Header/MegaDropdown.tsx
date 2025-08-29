@@ -48,7 +48,7 @@ const MegaDropdown = ({ menuItem, stickyMenu }) => {
         style={{
           boxShadow: "0 10px 25px rgba(0, 0, 0, 0.08)",
           borderTop: "3px solid #d8a635",
-          top: "140px",
+          top: stickyMenu ? "140px" : "160px",
           left: "50%",
           transform: "translateX(-50%)",
           width: "1170px",
